@@ -4,4 +4,4 @@ RUN conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioco
     conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes && \
-    conda install umi_tools=0.5.4
+    conda install -c https://conda.anaconda.org/toms umi_tools

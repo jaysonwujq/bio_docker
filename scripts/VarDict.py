@@ -5,12 +5,10 @@ import os
 import argparse
 import subprocess
 
-java="export PATH=/software/java/jdk1.8.0_202/bin:$PATH"
-VarDict="export PATH=/software/vardict/1.5.7/VarDictJava-1.5.7/bin:$PATH"
-ref="/data/Database/hg19/ucsc.hg19.fasta"
 parser=argparse.ArgumentParser("Call snp using VarDict.")
 parser.add_argument("-t","--tb",help="tumor bam",required=True)
 parser.add_argument("-n","--nb",help="normal bam",required=True)
+parser.add_argument("-r","--ref",help="reference",required=True)
 parser.add_argument("-b","--bed",help="target region bed file")
 parser.add_argument("-o","--out",help="output directory",default=os.getcwd())
 parser.add_argument("-pt","--ptumor",help="name of tumor",required=True)
@@ -26,6 +24,6 @@ par=""
 if args.bed:
     args.bed=os.path.abspath(args.bed)
     par=args.bed
-subprocess.check_call("%s && %s && VarDict -G %s -f 0.001 -N %s -b \"%s|%s\" -z -F -c 1 -S 2 -E 3 -g 4 %s|testsomatic.R|"
+subprocess.check_call("VarDict -G %s -f 0.001 -N %s -b \"%s|%s\" -z -F -c 1 -S 2 -E 3 -g 4 %s|testsomatic.R|"
                       "var2vcf_paired.pl -N \"%s|%s\" -f 0.001 >%s/%s_%s.vcf"
-                      %(java,VarDict,ref,args.ptumor,args.tb,args.nb,par,args.tumor,args.normal,args.outdir,args.ptumor,args.pnormal),shell=True)
+                      %(args.ref,args.ptumor,args.tb,args.nb,par,args.tumor,args.normal,args.outdir,args.ptumor,args.pnormal),shell=True)

@@ -7,19 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 
-RUN apt-get update && apt-get install -y apt-utils axel \
-    build-essential \
-    zip \
-    unzip \
-    wget \
-    pkg-config \
-    vim \
-    libbz2-dev \
-    liblzma-dev \
-    zlib1g-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    && apt-get clean
+RUN apt-get update && apt-get install -y apt-utils axel zip unzip wget build-essential && apt-get clean
 
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \

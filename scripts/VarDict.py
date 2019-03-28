@@ -8,11 +8,11 @@ import subprocess
 parser=argparse.ArgumentParser("Call snp using VarDict.")
 parser.add_argument("-t","--tb",help="tumor bam",required=True)
 parser.add_argument("-n","--nb",help="normal bam",required=True)
-parser.add_argument("-r","--ref",help="reference",required=True)
 parser.add_argument("-b","--bed",help="target region bed file")
 parser.add_argument("-o","--out",help="output directory",default=os.getcwd())
 parser.add_argument("-pt","--ptumor",help="name of tumor",required=True)
 parser.add_argument("-pt","--pnomal",help="name of normal",required=True)
+parser.add_argument("-r","--ref",help="reference",required=True)
 
 args=parser.parse_args()
 

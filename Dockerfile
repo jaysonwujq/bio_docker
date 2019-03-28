@@ -8,6 +8,41 @@ ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 
 RUN apt-get update && apt-get install -y apt-utils axel
+RUN echo "tzdata tzdata/Areas select Asia" > /tmp/preseed.txt; \
+    echo "tzdata tzdata/Zones/Asia select Chongqing" >> /tmp/preseed.txt; \
+    debconf-set-selections /tmp/preseed.txt && \
+    rm /etc/timezone && \
+    rm /etc/localtime && \
+    apt-get update && \
+    apt-get install -y tzdata
+
+## cleanup of files from setup
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# install softwares
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    zip \
+    unzip \
+    curl \
+    wget \
+    pkg-config \
+    vim \
+    libbz2-dev \
+    liblzma-dev \
+    zlib1g-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    r-base \
+    python \
+    python-pip \
+    python3 \
+    python3-pip \
+    openjdk-8-jdk \
+    openjdk-8-jre \
+    && apt-get clean
+
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/miniconda.sh && \

@@ -1,4 +1,4 @@
-FROM registry.cn-shenzhen.aliyuncs.com/fyc_base/tumor_base_1.0:latest
+FROM registry.cn-shenzhen.aliyuncs.com/fyc_base/tumor_base:latest
 ENV LC_ALL="C.UTF-8"
 ENV LANG="C.UTF-8"
 MAINTAINER fanyucai1@126.com

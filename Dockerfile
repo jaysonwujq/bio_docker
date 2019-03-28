@@ -1,5 +1,13 @@
 FROM ubuntu:18.04
-RUN apt-get -y update && apt-get install -y axel
+ENV LC_ALL="C.UTF-8"
+ENV LANG="C.UTF-8"
+
+## for apt to be noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
+
+
+RUN apt-get update && apt-get install -y apt-utils axel
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/miniconda.sh && \

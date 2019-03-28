@@ -7,20 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 
-RUN apt-get update && apt-get install -y apt-utils axel
-RUN echo "tzdata tzdata/Areas select Asia" > /tmp/preseed.txt; \
-    echo "tzdata tzdata/Zones/Asia select Chongqing" >> /tmp/preseed.txt; \
-    debconf-set-selections /tmp/preseed.txt && \
-    rm /etc/timezone && \
-    rm /etc/localtime && \
-    apt-get update && \
-    apt-get install -y tzdata
-
-## cleanup of files from setup
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# install softwares
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y apt-utils axel \
     build-essential \
     git \
     zip \

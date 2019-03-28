@@ -9,10 +9,8 @@ ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 RUN apt-get update && apt-get install -y apt-utils axel \
     build-essential \
-    git \
     zip \
     unzip \
-    curl \
     wget \
     pkg-config \
     vim \
@@ -21,7 +19,6 @@ RUN apt-get update && apt-get install -y apt-utils axel \
     zlib1g-dev \
     libncurses5-dev \
     libncursesw5-dev \
-    r-base \
     && apt-get clean
 
 
@@ -99,4 +96,4 @@ RUN cd /ref/annovar/humandb/ && \
     axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz && \
     axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi
 
-RUN cd /ref/annovar/humandb/ && gunzip *gz && unzip hg19_1000g2015aug.zip
+RUN cd /ref/annovar/humandb/ && unzip *gz && unzip hg19_1000g2015aug.zip

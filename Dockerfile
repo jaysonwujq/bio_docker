@@ -56,7 +56,7 @@ RUN cd /ref/annovar/humandb/ && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.gz && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.idx.gz && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt && \
+    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.gz && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_1000g2015aug.zip && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.idx.gz && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.gz && \

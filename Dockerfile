@@ -63,6 +63,7 @@ RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/anno
 RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.idx.gz
 RUN cd /ref/annovar/humandb/ && axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz
 RUN cd /ref/annovar/humandb/ && axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN cd /ref/annovar/humandb/ && gunzip *gz && unzip hg19_1000g2015aug.zip
 
 RUN mkdir -p /ref/genome/

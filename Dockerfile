@@ -17,33 +17,34 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes
+RUN conda install  samtools
+RUN conda install  bwa
+RUN conda install  fastqc
+RUN conda install  picard
+RUN conda install  GATK4
+RUN conda install  varscan
+RUN conda install  vardict
+RUN conda install  delly
+RUN conda install  fastp
+RUN conda install  snpsift
+RUN conda install  msisensor
+RUN conda install  samblaster
+RUN conda install  sambamba
+RUN conda install  snpeff
+RUN conda install  trimmomatic
+RUN conda install  pindel
+RUN conda install  seqtk
+RUN conda install  parallel
+RUN conda install  bedtools
+RUN conda install  bamtools
+RUN conda install  fgbio
+RUN conda install  control-freec
+RUN conda install  vcf2maf
+RUN conda install  bam-readcount
+RUN conda install  bcftools
+RUN conda install  Pisces
 
-RUN conda install  samtools && \
-    conda install  bwa    && \
-    conda install  fastqc && \
-    conda install  picard && \
-    conda install  GATK4 && \
-    conda install  varscan && \
-    conda install  vardict && \
-    conda install  delly && \
-    conda install  fastp && \
-    conda install  snpsift && \
-    conda install  msisensor && \
-    conda install  samblaster && \
-    conda install  sambamba && \
-    conda install  snpeff && \
-    conda install  trimmomatic && \
-    conda install  pindel && \
-    conda install  seqtk && \
-    conda install  parallel && \
-    conda install  bedtools && \
-    conda install  bamtools && \
-    conda install  fgbio && \
-    conda install  control-freec && \
-    conda install  vcf2maf && \
-    conda install  bam-readcount && \
-    conda install  bcftools && \
-    conda install  Pisces
+
 RUN mkdir /ref/
 RUN cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \
     tar xzvf annovar.latest.tar.gz

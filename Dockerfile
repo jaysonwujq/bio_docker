@@ -46,8 +46,8 @@ RUN conda install  samtools && \
     conda install  Pisces
 
 RUN mkdir -p /ref/genome/
-RUN axel -n20 https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.dict \
-    https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.fa.gz -P /ref/genome/
+RUN cd /ref/genome/ && axel -n20 https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.dict && \
+    axel -n20 https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.fa.gz
 
 RUN cd /ref/genome && \
     gunzip ucsc.hg19.fa.gz  && \

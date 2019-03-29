@@ -48,22 +48,21 @@ RUN mkdir /ref/
 RUN cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \
     tar xzvf annovar.latest.tar.gz
 
-RUN cd /ref/annovar/humandb/ && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_1000g2015aug.zip && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.idx.gz && \
-    axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz && \
-    axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_1000g2015aug.zip
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.idx.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz
+RUN cd /ref/annovar/humandb/ && axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi
 RUN cd /ref/annovar/humandb/ && gunzip *gz && unzip hg19_1000g2015aug.zip
 
 RUN mkdir -p /ref/genome/

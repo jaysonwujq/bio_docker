@@ -45,22 +45,8 @@ RUN conda install  samtools && \
     conda install  bcftools && \
     conda install  Pisces
 
-RUN mkdir -p /ref/genome/
-RUN cd /ref/genome/ && axel -n20 https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.dict && \
-    axel -n20 https://storage.googleapis.com/qiaseq-dna/data/genome/ucsc.hg19.fa.gz
-
-RUN cd /ref/genome && \
-    gunzip ucsc.hg19.fa.gz  && \
-    samtools faidx /ref/genome/ucsc.hg19.fa && \
-    bwa index /ref/genome/ucsc.hg19.fa
-
 RUN cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \
     tar xzvf annovar.latest.tar.gz
-
-RUN cd /ref/genome && axel -n20 https://storage.googleapis.com/qiaseq-dna/data/annotation/simpleRepeat_TRF.bed && \
-	axel -n20 https://storage.googleapis.com/qiaseq-dna/data/annotation/SR_LC_SL_RepeatMasker.bed && \
-	axel -n20 https://storage.googleapis.com/qiaseq-dna/data/annotation/SR_LC_SL.full.bed && \
-	axel -n20 https://storage.googleapis.com/qiaseq-dna/data/annotation/simpleRepeat.full.bed
 
 RUN cd /ref/annovar/humandb/ && \
     axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.gz && \

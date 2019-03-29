@@ -7,7 +7,6 @@ ENV LANG="C.UTF-8"
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-
 RUN apt-get -qq update && apt-get -qq -y install  apt-utils axel zip unzip wget build-essential && apt-get clean
 
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/ && \
@@ -68,30 +67,30 @@ RUN cd /ref/annovar/humandb/ && gunzip *gz && unzip hg19_1000g2015aug.zip
 
 RUN mkdir -p /ref/genome/
 RUN cd /ref/genome/ && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz -O chr1.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr2.fa.gz -O chr2.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr3.fa.gz -O chr3.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr4.fa.gz -O chr4.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr5.fa.gz -O chr5.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr6.fa.gz -O chr6.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr7.fa.gz -O chr7.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr8.fa.gz -O chr8.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr9.fa.gz -O chr9.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr10.fa.gz -O chr10.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr11.fa.gz -O chr11.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr12.fa.gz -O chr12.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr13.fa.gz -O chr13.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr14.fa.gz -O chr14.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr15.fa.gz -O chr15.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr16.fa.gz -O chr16.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr17.fa.gz -O chr17.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr18.fa.gz -O chr18.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr19.fa.gz -O chr19.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr20.fa.gz -O chr20.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr21.fa.gz -O chr21.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr22.fa.gz -O chr22.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrX.fa.gz -O chrX.fa.gz && \
-    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrY.fa.gz -O chrY.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr2.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr3.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr4.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr5.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr6.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr7.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr8.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr9.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr10.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr11.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr12.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr13.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr14.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr15.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr16.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr17.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr18.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr19.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr20.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr21.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr22.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrX.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrY.fa.gz && \
     gunzip chr*.fa.gz
 RUN cd /ref/genome/ && \
     cat chr1.fa chr2.fa chr3.fa chr4.fa chr5.fa \

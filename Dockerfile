@@ -91,13 +91,14 @@ RUN cd /ref/genome/ && \
     axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr22.fa.gz && \
     axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrX.fa.gz && \
     axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrY.fa.gz && \
+    axel -n20 ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrM.fa.gz && \
     gunzip chr*.fa.gz
 RUN cd /ref/genome/ && \
     cat chr1.fa chr2.fa chr3.fa chr4.fa chr5.fa \
 	chr6.fa chr7.fa chr8.fa chr9.fa chr10.fa \
 	chr11.fa chr12.fa chr13.fa chr14.fa chr15.fa \
 	chr16.fa chr17.fa chr18.fa chr19.fa chr20.fa \
-	chr21.fa chr22.fa chrX.fa chrY.fa > ucsc.hg19.fasta
+	chr21.fa chr22.fa chrX.fa chrY.fa chrM.fa > ucsc.hg19.fasta
 RUN cd /ref/genome/ && rm chr*fa*
 RUN samtools faidx /ref/genome/ucsc.hg19.fasta
 RUN bwa index /ref/genome/ucsc.hg19.fasta

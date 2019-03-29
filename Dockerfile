@@ -44,7 +44,7 @@ RUN conda install  samtools && \
     conda install  bam-readcount && \
     conda install  bcftools && \
     conda install  Pisces
-
+RUN mkdir /ref/
 RUN cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \
     tar xzvf annovar.latest.tar.gz
 

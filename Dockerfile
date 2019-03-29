@@ -1,4 +1,5 @@
-FROM ubuntu:18.04
+FROM conda/miniconda3
+
 ENV LC_ALL="C.UTF-8"
 ENV LANG="C.UTF-8"
 
@@ -7,14 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 
-RUN apt-get update && apt-get install -y apt-utils axel zip unzip wget build-essential && apt-get clean
+RUN -qq update && apt-get -qq -y install  apt-utils axel zip unzip wget build-essential && apt-get clean
 
-
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
-    rm ~/miniconda.sh
-ENV PATH /opt/conda/bin:$PATH
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/ && \
@@ -22,7 +17,7 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes
-RUN conda upgrade conda
+    
 RUN conda install  samtools && \
     conda install  bwa    && \
     conda install  fastqc && \

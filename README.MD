@@ -1,4 +1,4 @@
-#Base miniconda3
+# Base miniconda3(2019.03)
 ## software list
     samtools=1.9
     bwa=0.7.17 

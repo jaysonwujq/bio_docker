@@ -104,3 +104,4 @@ RUN cd /ref/genome/ && rm chr*fa*
 RUN samtools faidx /ref/genome/ucsc.hg19.fasta
 RUN bwa index /ref/genome/ucsc.hg19.fasta
 RUN picard CreateSequenceDictionary R=/ref/genome/ucsc.hg19.fasta O=/ref/genome/ucsc.hg19.dict
+

@@ -1,5 +1,5 @@
 # Base miniconda3(2019.03)
-## software list
+## Software list
     samtools=1.9
     bwa=0.7.17 
     fastqc=0.11.8 

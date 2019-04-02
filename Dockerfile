@@ -42,7 +42,7 @@ RUN conda install  vcf2maf
 RUN conda install  bam-readcount
 RUN conda install  bcftools
 RUN conda install  Pisces
-
+RUN cd /usr/local/bin && wget https://github.com/mozack/abra2/releases/download/v2.19/abra2-2.19.jar && chmod 777 abra2-2.19.jar
 
 RUN mkdir /ref/
 RUN cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \

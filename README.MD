@@ -26,15 +26,6 @@
     bcftools-1.9 
     pisces-5.2.9.122
 ## Database list
-    annovar 2018.12
-    hg19_cosmic70
-    hg19_clinvar_20190305
-    hg19_ljb26_all
-    hg19_exac03
-    hg19_1000g2015aug
-    hg19_avsnp150
-    hg19_esp6500siv2_all
-    common_all_20180423.vcf.gz(human_9606_b151_GRCh37p13)
     ucsc.hg19.fasta(chr1-22/chrX/chrY/chrM)
     ucsc.hg19.fasta.fai
     ucsc.hg19.dict

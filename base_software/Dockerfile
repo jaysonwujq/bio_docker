@@ -43,8 +43,8 @@ RUN conda install  bam-readcount
 RUN conda install  bcftools
 RUN conda install  Pisces
 RUN cd /usr/local/bin && wget https://github.com/mozack/abra2/releases/download/v2.19/abra2-2.19.jar && chmod 777 abra2-2.19.jar
-RUN mkdir -p /ref/genome/
-RUN cd /ref/genome/ && \
+RUN mkdir -p /ref/
+RUN cd /ref/ && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr2.fa.gz && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr3.fa.gz && \
@@ -71,14 +71,15 @@ RUN cd /ref/genome/ && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrY.fa.gz && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrM.fa.gz && \
     gunzip chr*.fa.gz
-RUN cd /ref/genome/ && \
+RUN cd /ref/ && \
     cat chr1.fa chr2.fa chr3.fa chr4.fa chr5.fa \
 	chr6.fa chr7.fa chr8.fa chr9.fa chr10.fa \
 	chr11.fa chr12.fa chr13.fa chr14.fa chr15.fa \
 	chr16.fa chr17.fa chr18.fa chr19.fa chr20.fa \
 	chr21.fa chr22.fa chrX.fa chrY.fa chrM.fa > ucsc.hg19.fasta
-RUN cd /ref/genome/ && rm chr*fa*
-RUN samtools faidx /ref/genome/ucsc.hg19.fasta
-RUN bwa index /ref/genome/ucsc.hg19.fasta
-RUN picard CreateSequenceDictionary R=/ref/genome/ucsc.hg19.fasta O=/ref/genome/ucsc.hg19.dict
+RUN cd /ref/ && rm chr*fa*
+RUN samtools faidx /ref/ucsc.hg19.fasta
+RUN bwa index /ref/ucsc.hg19.fasta
+RUN picard CreateSequenceDictionary R=/ref/ucsc.hg19.fasta O=/ref/ucsc.hg19.dict
+ENV PATH /ref/:$PATH
 

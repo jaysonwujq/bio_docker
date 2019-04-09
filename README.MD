@@ -30,5 +30,3 @@
     ucsc.hg19.fasta.fai
     ucsc.hg19.dict
     bwa index ucsc.hg19.fasta
-    
-    

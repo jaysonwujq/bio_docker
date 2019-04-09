@@ -15,32 +15,32 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes && \
-    conda installsamtools && \
-    conda installbwa && \
-    conda installfastqc && \
-    conda installpicard && \
-    conda installGATK4 && \
-    conda installvarscan && \
-    conda installvardict && \
-    conda installdelly && \
-    conda installfastp && \
-    conda installsnpsift && \
-    conda installmsisensor && \
-    conda installsamblaster && \
-    conda installsambamba && \
-    conda installsnpeff && \
-    conda installtrimmomatic && \
-    conda installpindel && \
-    conda installseqtk && \
-    conda installparallel && \
-    conda installbedtools && \
-    conda installbamtools && \
-    conda installfgbio && \
-    conda installcontrol-freec && \
-    conda installvcf2maf && \
-    conda installbam-readcount && \
-    conda installbcftools && \
-    conda installPisces && \
+    conda install samtools && \
+    conda install bwa && \
+    conda install fastqc && \
+    conda install picard && \
+    conda install GATK4 && \
+    conda install varscan && \
+    conda install vardict && \
+    conda install delly && \
+    conda install fastp && \
+    conda install snpsift && \
+    conda install msisensor && \
+    conda install samblaster && \
+    conda install sambamba && \
+    conda install snpeff && \
+    conda install trimmomatic && \
+    conda install pindel && \
+    conda install seqtk && \
+    conda install parallel && \
+    conda install bedtools && \
+    conda install bamtools && \
+    conda install fgbio && \
+    conda install control-freec && \
+    conda install vcf2maf && \
+    conda install bam-readcount && \
+    conda install bcftools && \
+    conda install Pisces && \
     cd /usr/local/bin && wget https://github.com/mozack/abra2/releases/download/v2.19/abra2-2.19.jar && chmod 777 abra2-2.19.jar
 RUN mkdir -p /ref/ && cd /ref/ && \
     axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz && \

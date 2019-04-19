@@ -20,6 +20,6 @@ args=parser.parse_args()
 out=args.outdir+args.prefix
 cmd="%s mem -t 20 -R \'@RG\\tID:%s\\tSM:%s\\tLB:lib:\\tPL:Illumina\' %s %s %s |" %(bwa,args.prefix,args.prefix,args.ref,args.pe1,args.pe2)
 cmd +="%s | %s view -Sb - > %s.bam" %(samblaster,samtools,out)
-subprocess.check_call(cmd,shell=True)
+subprocess.check_calel(cmd,shell=True)
 
 

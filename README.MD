@@ -30,3 +30,6 @@
     ucsc.hg19.fasta.fai
     ucsc.hg19.dict
     bwa index ucsc.hg19.fasta
+    
+## Docker base upload on a_li cloud
+    docker pull registry.cn-beijing.aliyuncs.com/fyc_base/tumor_base:1.0

@@ -1,5 +1,4 @@
-*software*
-
+# software
     control-freec
     samtools
     bwa

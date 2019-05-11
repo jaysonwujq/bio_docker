@@ -1,14 +1,33 @@
-FROM conda/miniconda3
-
+FROM ubuntu:18.04
 ENV LC_ALL="C.UTF-8"
 ENV LANG="C.UTF-8"
 
 ## for apt to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
-
-RUN apt-get -qq update && apt-get -qq -y install  apt-utils axel zip unzip wget build-essential && apt-get clean
-
+##################################
+RUN apt-get -qq update && apt-get -y install gcc libbz2-dev \
+    apt-transport-https\
+    git \
+    liblzma-dev \
+    zlib1g-dev \
+    libncurses5-dev openssl \
+    python \
+    python-pip \
+    python3 \
+    python3-pip \
+    apt-utils \
+    axel \
+    zip \
+    unzip \
+    wget \
+    curl \
+    build-essential \
+    libncursesw5-dev && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh && \
+    bash /tmp/miniconda.sh -bfp /usr/local && rm -rf /tmp/miniconda.sh
+ENV PATH /opt/conda/bin:$PATH
+################################
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/ && \
@@ -16,6 +35,7 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes && \
+    conda install  control-freec && \
     conda install  samtools && \
     conda install  bwa && \
     conda install  fastqc && \
@@ -25,11 +45,9 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda install  vardict && \
     conda install  delly && \
     conda install  fastp && \
-    conda install  snpsift && \
     conda install  msisensor && \
     conda install  samblaster && \
     conda install  sambamba && \
-    conda install  snpeff && \
     conda install  trimmomatic && \
     conda install  pindel && \
     conda install  seqtk && \
@@ -37,68 +55,31 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
     conda install  bedtools && \
     conda install  bamtools && \
     conda install  fgbio && \
-    conda install  control-freec && \
     conda install  vcf2maf && \
     conda install  bam-readcount && \
+    conda install  umi_tools && \
     conda install  bcftools && \
-    conda install  Pisces && \
-    cd /usr/local/bin && wget https://github.com/mozack/abra2/releases/download/v2.19/abra2-2.19.jar && chmod 777 abra2-2.19.jar && \
-    mkdir /ref/ && cd /ref/ && axel -n20 http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz && \
-    tar xzvf annovar.latest.tar.gz && rm annovar.latest.tar.gz
-
-RUN cd /ref/annovar/humandb/ && axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_cosmic70.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_clinvar_20190305.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_ljb26_all.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_exac03.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_1000g2015aug.zip && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.idx.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_avsnp150.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_esp6500siv2_all.txt.idx.gz && \
-    axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz && \
-    axel -n20 ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606_b151_GRCh37p13/VCF/common_all_20180423.vcf.gz.tbi && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_gnomad211_exome.txt.gz && \
-    axel -n20 http://www.openbioinformatics.org/annovar/download/hg19_gnomad211_exome.txt.idx.gz && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/messages && cd /ref/annovar/humandb/ && gunzip *gz && unzip hg19_1000g2015aug.zip
-
-RUN mkdir -p /ref/genome/ && cd /ref/genome/ && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr1.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr2.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr3.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr4.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr5.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr6.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr7.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr8.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr9.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr10.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr11.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr12.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr13.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr14.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr15.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr16.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr17.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr18.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr19.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr20.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr21.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chr22.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrX.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrY.fa.gz && \
-    axel -n20 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes/chrM.fa.gz && \
-    gunzip chr*.fa.gz && cd /ref/genome/ && \
-    cat chr1.fa chr2.fa chr3.fa chr4.fa chr5.fa \
-	chr6.fa chr7.fa chr8.fa chr9.fa chr10.fa \
-	chr11.fa chr12.fa chr13.fa chr14.fa chr15.fa \
-	chr16.fa chr17.fa chr18.fa chr19.fa chr20.fa \
-	chr21.fa chr22.fa chrX.fa chrY.fa chrM.fa > ucsc.hg19.fasta && rm chr*fa*
-RUN samtools faidx /ref/genome/ucsc.hg19.fasta && \
-    bwa index /ref/genome/ucsc.hg19.fasta && \
-    picard CreateSequenceDictionary R=/ref/genome/ucsc.hg19.fasta O=/ref/genome/ucsc.hg19.dict && \
-ENV PATH /ref/:ref/genome/:/ref/annovar/humandb/:/ref/annovar/:$PATH
-
+    conda install  Pisces
+#####################abra######################
+RUN cd  /usr/local/bin/ && axel -n20 https://github.com/mozack/abra2/releases/download/v2.19/abra2-2.19.jar && chmod 777 /usr/local/bin/abra2-2.19.jar
+####################gene fuse##################
+RUN cd /usr/local/bin/ && axel -n20 http://opengene.org/GeneFuse/genefuse && chmod a+x /usr/local/bin/genefuse
+####################snpeff###########################
+RUN cd /usr/local/ && axel -n20 https://nchc.dl.sourceforge.net/project/snpeff/snpEff_latest_core.zip && unzip snpEff_latest_core.zip
+################ R packages ################
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'https://mirrors.tuna.tsinghua.edu.cn/CRAN/'; options(repos = r);" > ~/.Rprofile
+RUN axel -n20 https://cran.r-project.org/src/contrib/Archive/cghseg/cghseg_1.0.2-1.tar.gz && R CMD INSTALL cghseg_1.0.2-1.tar.gz && rm cghseg_1.0.2-1.tar.gz
+RUN Rscript -e "install.packages(c('BiocManager'))"
+RUN Rscript -e "BiocManager::install(c('aroma.light','DNAcopy','PSCBS'))"
+RUN Rscript -e "install.packages(c('cluster','plyr','tidyverse','magrittr','data.table','cwhmisc','digest','fastICA','MASS','mclust','R.cache','gridExtra','naturalsort','scales','ggplot2','extrafont'))"
+RUN mkdir ~/.Rcache
+####################python2 and python3  module########################
+RUN axel -n20  https://pypi.tuna.tsinghua.edu.cn/packages/6a/49/7e10686647f741bd9c8918b0decdb94135b542fe372ca1100739b8529503/xgboost-0.82-py2.py3-none-manylinux1_x86_64.whl && \
+    pip2 install xgboost-0.82-py2.py3-none-manylinux1_x86_64.whl && pip3 install xgboost-0.82-py2.py3-none-manylinux1_x86_64.whl && rm xgboost-0.82-py2.py3-none-manylinux1_x86_64.whl
+RUN pip2 install -i https://pypi.tuna.tsinghua.edu.cn/simple configparser biopython pysam PyVCF Cython MySQL-python pysqlite scikit-learn seaborn && \
+    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple configparser biopython pysam PyVCF Cython && \
+    pip2 install -i https://pypi.tuna.tsinghua.edu.cn/simple RSeQC==2.6.6 cutadapt==1.16 tornado==5.1.1 HTSeq CNVkit json5 wheel parse2csv && \
+    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple RSeQC cutadapt tornado seaborn scikit-learn edlib HTSeq CNVkit PyYAML wheel parse2csv parse2csv
+#######################set workdir##############################
+RUN mkdir -p /project/
+WORKDIR /project/

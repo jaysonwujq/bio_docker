@@ -1,5 +1,27 @@
-#   software_list
+# software_list
 
+## bwa(0.7.17)
+    /software/bwa/bwa-0.7.17/bwa
+## gatk(4.1.3.0)
+    /software/GATK/gatk-4.1.3.0/gatk
+##  fastp(version 0.20.0)
+    /software/fastp/fastp
+##  genefuse(v0.6.1)
+    /software/genefuse/genefuse
+##  picard(2.20.6)
+    /software/picard/picard.jar
+##  fgbio(1.0.0)
+     /software/fgbio/fgbio-1.0.0.jar
+##  vardict(1.6.0)
+    /software/vardict/VarDict-1.6.0/bin/VarDict
+##  delly(v0.8.1)
+    /software/Delly/delly_v0.8.1_linux_x86_64bit
+##  samtools(1.9)
+    /software/samtools/samtools-v1.9/bin/samtools
+##  Trimmomatic(0.39)
+    /software/Trimmomatic/Trimmomatic-0.39/trimmomatic-0.39.jar
+##  abra2(2.20)
+    /software/abra2/abra2-2.20.jar
 ##   R(v3.6)
     /usr/bin/R
 ##   java(v1.8.0_222)

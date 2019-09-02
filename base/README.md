@@ -1,10 +1,9 @@
-R-v3.6
+R-v3.6: /usr/bin/R  ggplot2
 
-java
+java-v1.8.0_222:/usr/bin/java
 
-python2:
+python2(2.7.5):/usr/bin/python /usr/bin/pip
 
-        Successfully installed 
         CNVkit-0.9.6 
         HTSeq-0.11.2 
         MySQL-python-1.2.5 
@@ -51,4 +50,33 @@ python2:
         wheel-0.33.6 
         xopen-0.8.1
 
-python3:
+python_v3.7.0:/software/python3/Python-v3.7.0/bin/python3,/software/python3/Python-v3.7.0/bin/pip3
+
+         CNVkit-0.9.6 
+         PyVCF-0.6.8 
+         PyYAML-5.1.2 
+         RSeQC-3.0.0 
+         bx-python-0.8.4 
+         click-7.0 
+         cutadapt-2.4 
+         decorator-4.4.0 
+         dnaio-0.3 
+         edlib-1.3.4 
+         future-0.17.1 
+         joblib-0.13.2 
+         networkx-2.3 
+         parse-1.12.1 
+         parse2csv-0.1.4 
+         pillow-6.1.0 
+         pomegranate-0.11.1 
+         pyBigWig-0.3.17 
+         pyfaidx-0.5.5.2 
+         reportlab-3.5.23 
+         scikit-learn-0.21.3 
+         scipy-1.3.1 
+         seaborn-0.9.0 
+         tornado-6.0.3 
+         wheel-0.33.6 
+         xopen-0.8.1
+
+
